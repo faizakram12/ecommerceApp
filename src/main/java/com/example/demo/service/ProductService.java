@@ -115,18 +115,21 @@ public class ProductService {
         response.setStock(product.getStock());
         response.setCategoryId(product.getCategoryId());
 
-        ProductCategory category = productCategoryRepository
-                .findById(product.getCategoryId())
-                .orElse(null);
+        if (product.getCategoryId() != null && !product.getCategoryId().isBlank()) {
 
-        if (category != null) {
+            ProductCategory category = productCategoryRepository
+                    .findById(product.getCategoryId())
+                    .orElse(null);
 
-            ProductCategoryResponse categoryResponse = new ProductCategoryResponse();
+            if (category != null) {
 
-            categoryResponse.setId(category.getId());
-            categoryResponse.setCategoryName(category.getCategoryName());
+                ProductCategoryResponse categoryResponse = new ProductCategoryResponse();
 
-            response.setCategory(categoryResponse);
+                categoryResponse.setId(category.getId());
+                categoryResponse.setCategoryName(category.getCategoryName());
+
+                response.setCategory(categoryResponse);
+            }
         }
 
         return response;
