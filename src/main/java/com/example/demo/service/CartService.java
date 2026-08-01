@@ -240,6 +240,7 @@ public class CartService {
             productResponse.setPrice(product.getPrice());
             productResponse.setStock(product.getStock());
             productResponse.setCategoryId(product.getCategoryId());
+            productResponse.setImageUrl(product.getImageUrl());
 
             response.setProduct(productResponse);
 
